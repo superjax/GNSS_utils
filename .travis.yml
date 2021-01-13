@@ -11,12 +11,11 @@ addons:
       - cmake
       - libgtest-dev
       - libeigen3-dev
-      - libyaml-cpp-dev
     update: true
 
 before_install:
   - sudo apt update
-  - sudo apt install -y cmake build-essential libgtest-dev libeigen3-dev libyaml-cpp-dev
+  - sudo apt install -y cmake build-essential libgtest-dev libeigen3-dev
   - sudo apt install -y libopenblas-dev libboost-thread-dev
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive

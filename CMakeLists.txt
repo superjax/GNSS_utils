@@ -1,36 +1,24 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.0)
 project(gnss_utils)
 
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-find_package(Eigen3 REQUIRED)
-find_package(yaml-cpp REQUIRED)
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/findDeps.cmake)
 
 find_deps(geometry https://github.com/superjax/geometry)
 
 include_directories(gnss_utils
-    ${EIGEN3_INCLUDE_DIRS}
-    ${YAML_CPP_INCLUDE_DIR}
     ${geometry_INCLUDE_DIRS}
     include)
-add_library(gnss_utils
+add_library(gnss_utils SHARED
     src/gtime.cpp
     src/datetime.cpp
     src/satellite.cpp
     )
-# target_include_directories(gnss_utils PUBLIC 
-#     ${EIGEN3_INCLUDE_DIRS}
-#     ${YAML_CPP_INCLUDE_DIR}
-#     ${geometry_INCLUDE_DIRS}
-#     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/>  
-#     $<INSTALL_INTERFACE:include/>)
 target_link_libraries(gnss_utils
-    ${YAML_CPP_LIBRARIES}
-    stdc++fs)
+    Eigen3::Eigen stdc++fs)
+
+target_compile_options(gnss_utils PUBLIC -std=c++17)
 
 option(BUILD_TESTS "Build Tests" OFF)
 if (BUILD_TESTS)
