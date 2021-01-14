@@ -27,7 +27,8 @@ if (BUILD_TESTS)
         src/test/test_time.cpp
         src/test/test_wgs84.cpp
         src/test/test_satellite.cpp
-        src/reference/reference_algorithms.cpp)
+        src/reference/reference_algorithms.cpp
+        src/test/test_bit_utils.cpp)
     target_link_libraries(gnss_utils_test
             gtest
             gtest_main
