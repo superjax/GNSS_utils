@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12.0)
+cmake_minimum_required(VERSION 3.0.0)
 project(gnss_utils)
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
@@ -27,8 +27,7 @@ if (BUILD_TESTS)
         src/test/test_time.cpp
         src/test/test_wgs84.cpp
         src/test/test_satellite.cpp
-        src/reference/reference_algorithms.cpp
-        src/test/test_bit_utils.cpp)
+        src/reference/reference_algorithms.cpp)
     target_link_libraries(gnss_utils_test
             gtest
             gtest_main
